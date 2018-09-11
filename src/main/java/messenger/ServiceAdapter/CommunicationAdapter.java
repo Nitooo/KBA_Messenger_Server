@@ -27,8 +27,8 @@ public class CommunicationAdapter {
 	}
 	
 	@RequestMapping(value = "/recieveMessage", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public List<Message> recieveMessage(@RequestBody Chat chat) {
-		return communicationService.recieveMessage(chat);
+	public Chat getChat(@RequestBody Chat chat) {
+		return communicationService.getChat(chat);
 	}
 
 }

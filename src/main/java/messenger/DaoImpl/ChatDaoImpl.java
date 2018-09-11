@@ -41,7 +41,7 @@ public class ChatDaoImpl implements ChatDao, Serializable {
 
 	@Override
 	public Chat getChatById(Long chatId) {
-		TypedQuery<Chat> query = em.createQuery("SELECT chat FROM Chat chat WHERE chatid = :chatid", Chat.class);
+		TypedQuery<Chat> query = em.createQuery("SELECT chat FROM Chat chat WHERE chat_id = :chatid", Chat.class);
 		query.setParameter("chatid", chatId);
 		return query.getSingleResult();
 		//return Chat.getChatById(chatId);

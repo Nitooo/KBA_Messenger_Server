@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import messenger.Dao.ChatDao;
 import messenger.Dao.MessageDao;
 import messenger.Domain.Chat;
 import messenger.Domain.Message;
@@ -23,6 +24,9 @@ public class CommunicationImpl implements Communication, Serializable {
 
 	@Autowired
 	private MessageDao messageDbService;
+	
+	@Autowired
+	private ChatDao chatDbService;
 
 	@Override
 	@Transactional
@@ -37,9 +41,9 @@ public class CommunicationImpl implements Communication, Serializable {
 
 	@Override
 	@Transactional
-	public List<Message> recieveMessage(Chat chat) {
+	public Chat getChat(Chat chat) {
 		try{
-			return chat.getMessages(); //Ganze Methode sehr sinnvoll oder?
+			return chatDbService.getChatById(chat.getChatId());
 		} catch (Exception e) {
 			return null;
 		}		

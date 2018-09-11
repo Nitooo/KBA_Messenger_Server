@@ -16,8 +16,8 @@ public interface Communication {
 	
 	/**
 	 * @param chat chat for receive messages
-	 * @return List of all Messages belonging to the chat
+	 * @return chat with all messages
 	 */
-	public List<Message> recieveMessage(Chat chat);
+	public Chat getChat(Chat chat);
 
 }
