@@ -3,7 +3,10 @@ package messenger.ServiceAdapter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +22,16 @@ public class ManageContactListAdapter {
 	@Autowired
 	private ManageContactList manageContactListService;
 	
-	@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	/*@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public boolean addContact(@RequestBody User user, @RequestBody User contact) {
+		return manageContactListService.addContact(user, contact);
+	}*/
+	
+	@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public boolean addContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
+		User user = entity.getFirst("user");
+		User contact = entity.getFirst("contact");
+		
 		return manageContactListService.addContact(user, contact);
 	}
 	

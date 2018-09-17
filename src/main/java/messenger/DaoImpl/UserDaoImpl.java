@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 
 	@Override
 	public User getUserById(Long userId) {
-		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE userid = :userid", User.class);
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user_id = :userid", User.class);
 		query.setParameter("userid", userId);
 		return query.getSingleResult();
 	}
