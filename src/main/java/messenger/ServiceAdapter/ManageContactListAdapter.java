@@ -31,7 +31,8 @@ public class ManageContactListAdapter {
 	public boolean addContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
 		User user = entity.getFirst("user");
 		User contact = entity.getFirst("contact");
-		
+		System.out.print(user.getUsername());
+		System.out.println(contact.getUsername());
 		return manageContactListService.addContact(user, contact);
 	}
 	

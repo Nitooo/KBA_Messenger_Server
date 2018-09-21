@@ -44,8 +44,9 @@ public class ManageContactListImpl implements ManageContactList, Serializable {
 	@Override
 	@Transactional
 	public boolean addContact(User user, User contact) {
+		user = userDbService.getUserById(user.getUserId());
 		Set<User> contacts = user.getContacts();
-		contacts.add(user);
+		contacts.add(contact);
 		
 		user.setContacts(contacts);
 		
