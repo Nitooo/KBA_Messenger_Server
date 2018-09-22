@@ -27,6 +27,6 @@ public interface ManageContactList {
 	 * @param user owner of contact list
 	 * @return List of contacts belonging to the contacts of the user
 	 */
-	public List<User> getContactList(User user);
+	//public List<User> getContactList(User user);
 	
 }

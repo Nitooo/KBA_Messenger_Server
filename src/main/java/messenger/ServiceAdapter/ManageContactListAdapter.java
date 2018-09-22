@@ -31,19 +31,23 @@ public class ManageContactListAdapter {
 	public boolean addContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
 		User user = entity.getFirst("user");
 		User contact = entity.getFirst("contact");
-		System.out.print(user.getUsername());
-		System.out.println(contact.getUsername());
 		return manageContactListService.addContact(user, contact);
 	}
 	
 	@RequestMapping(value = "/deleteContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public boolean deleteContact(@RequestBody User user, @RequestBody User contact) {
+	public boolean deleteContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
+		User user = entity.getFirst("user");
+		User contact = entity.getFirst("contact");
+		
+		System.out.println(user.getUsername());
+		System.out.println(contact.getUsername());
+		
 		return manageContactListService.deleteContact(user, contact);
 	}
-	
-	@RequestMapping(value = "/getContactList", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public List<User> getContactList(@RequestBody User user) {
-		return manageContactListService.getContactList(user);
-	}
+//	
+//	@RequestMapping(value = "/getContactList", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+//	public List<User> getContactList(@RequestBody User user) {
+//		return manageContactListService.getContactList(user);
+//	}
 
 }
