@@ -122,19 +122,19 @@ public class UserManagementAdapter {
 
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public User[] getAllUsers() {
-		throw new Exception_Custom("01 - IllegalArgumentException ");
-//		try {
-//			return userManagementService.getAllUsers();
-//		} catch (IllegalArgumentException | TransactionRequiredException e) {
-//			throw new Exception_Custom(
-//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
-//		} catch (RuntimeException e) {
-//			throw new Exception_Custom(
-//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
-//		} catch (Exception e) {
-//			throw new Exception_Custom(
-//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
-//		}
+//		throw new Exception_Custom("01 - IllegalArgumentException ");
+		try {
+			return userManagementService.getAllUsers();
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+		} catch (Exception e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+		}
 	}
 
 }

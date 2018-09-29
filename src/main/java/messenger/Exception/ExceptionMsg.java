@@ -7,12 +7,14 @@ public class ExceptionMsg {
 		this.setExceptionMsg(exceptionMsg);
 	}
 
-	public String setExceptionMsg() {
+	public String getExceptionMsg() {
 		return exceptionMsg;
 	}
 
 	public void setExceptionMsg(String exceptionMsg) {
 		this.exceptionMsg = exceptionMsg;
 	}
+
+
 
 }
