@@ -19,19 +19,18 @@ public class GetUserImpl implements GetUser, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
-    private UserDao userDbService;
+	private UserDao userDbService;
 
 	@Override
 	@Transactional
 	public User getUser(String username) {
-		try{
+		try {
 			return userDbService.getUserByName(username);
 		} catch (NoResultException nre) {
 			return null;
 		}
 	}
-	
 
 }

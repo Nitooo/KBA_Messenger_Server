@@ -13,24 +13,24 @@ import messenger.Service.UserValidation;
 
 @Service
 public class UserValidationImpl implements UserValidation, Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
-    private UserDao userDbService;
+	private UserDao userDbService;
 
 	@Override
 	@Transactional
 	public boolean checkIfUserExists(Long userId) {
-		try{
+		try {
 			userDbService.getUserById(userId);
 			return true;
 		} catch (NoResultException nre) {
 			return false;
 		}
-	} 
+	}
 
 }

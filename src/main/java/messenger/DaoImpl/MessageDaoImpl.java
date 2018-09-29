@@ -1,6 +1,5 @@
 package messenger.DaoImpl;
 
-
 import java.io.Serializable;
 
 import javax.persistence.EntityManager;
@@ -17,14 +16,14 @@ public class MessageDaoImpl implements MessageDao, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
 	public EntityManager getEm() {
 		return em;
 	}
-	
+
 	public <T> void persistObject(T entity) {
 		em.persist(entity);
 	}

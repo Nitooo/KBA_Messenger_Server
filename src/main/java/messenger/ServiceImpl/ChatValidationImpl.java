@@ -13,22 +13,19 @@ import messenger.Service.ChatValidation;
 
 @Service
 public class ChatValidationImpl implements ChatValidation, Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private ChatDao chatDbService;
 
 	@Override
 	@Transactional
 	public boolean checkIfChatExists(Long chatId) {
-		try{
+		try {
 			chatDbService.getChatById(chatId);
 			return true;
-		} catch (NoResultException nre) {
+		} catch (NoResultException e) {
 			return false;
 		}
 	}

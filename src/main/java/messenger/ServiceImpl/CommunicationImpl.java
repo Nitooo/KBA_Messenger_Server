@@ -1,8 +1,8 @@
 package messenger.ServiceImpl;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import messenger.Service.Communication;
 
 @Service
 public class CommunicationImpl implements Communication, Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -24,30 +24,30 @@ public class CommunicationImpl implements Communication, Serializable {
 
 	@Autowired
 	private MessageDao messageDbService;
-	
+
 	@Autowired
 	private ChatDao chatDbService;
 
 	@Override
 	@Transactional
 	public boolean sendMessage(Message message) {
-		try{
-			messageDbService.persistObject(message);
-			return true;
-		} catch (Exception e) {
+		try {
+			chatDbService.getChatById(message.getChat().getChatId());
+		} catch (NoResultException e) {
 			return false;
 		}
+		messageDbService.persistObject(message);
+		return true;
 	}
 
 	@Override
 	@Transactional
 	public Chat getChat(Chat chat) {
-		try{
+		try {
 			return chatDbService.getChatById(chat.getChatId());
-		} catch (Exception e) {
+		} catch (NoResultException e) {
 			return null;
-		}		
+		}
 	}
 
-	
 }

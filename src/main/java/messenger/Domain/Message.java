@@ -26,21 +26,21 @@ public class Message implements Serializable {
 
 	@Column(name = "TEXT")
 	private String text;
-	
+
 	@Column(name = "TIMESTAMP")
 	private Timestamp timestamp;
-	
-    @ManyToOne
-    @JoinColumn(name="USER_ID")
-    @JsonIgnoreProperties(value={ "contacts", "contactOf", "chats" }, allowSetters = true)
-    private User sender;
-    
+
 	@ManyToOne
-    @JoinColumn(name="CHAT_ID")
+	@JoinColumn(name = "USER_ID")
+	@JsonIgnoreProperties(value = { "contacts", "contactOf", "chats" }, allowSetters = true)
+	private User sender;
+
+	@ManyToOne
+	@JoinColumn(name = "CHAT_ID")
 	@JsonIgnoreProperties(value = "messages", allowSetters = true)
-    private Chat chat;	
-    
-    public Long getMessageId() {
+	private Chat chat;
+
+	public Long getMessageId() {
 		return messageId;
 	}
 

@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 	public <T> void persistObject(T entity) {
 		em.persist(entity);
 	}
-	
+
 	public <T> T find(Class<T> entityClass, Object primaryKey) {
 		return em.find(entityClass, primaryKey);
 	}
@@ -67,5 +67,5 @@ public class UserDaoImpl implements UserDao, Serializable {
 		query.setParameter("userid", userId);
 		return query.getSingleResult();
 	}
-	
+
 }

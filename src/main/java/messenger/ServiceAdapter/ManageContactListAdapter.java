@@ -1,18 +1,17 @@
 package messenger.ServiceAdapter;
 
-import java.util.List;
+import javax.persistence.TransactionRequiredException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import messenger.Domain.User;
+import messenger.Exception.Exception_Custom;
 import messenger.Service.ManageContactList;
 
 @RestController
@@ -21,33 +20,35 @@ public class ManageContactListAdapter {
 
 	@Autowired
 	private ManageContactList manageContactListService;
-	
-	/*@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public boolean addContact(@RequestBody User user, @RequestBody User contact) {
-		return manageContactListService.addContact(user, contact);
-	}*/
-	
+
 	@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public boolean addContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
-		User user = entity.getFirst("user");
-		User contact = entity.getFirst("contact");
-		return manageContactListService.addContact(user, contact);
+	public boolean addContact(@RequestBody LinkedMultiValueMap<String, User> entity) {
+		try {
+			User user = entity.getFirst("user");
+			User contact = entity.getFirst("contact");
+			return manageContactListService.addContact(user, contact);
+		} catch (IllegalArgumentException e) {
+			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
+		} catch (TransactionRequiredException e) {
+			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (Exception e) {
+			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+		}
 	}
-	
+
 	@RequestMapping(value = "/deleteContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public boolean deleteContact(@RequestBody LinkedMultiValueMap<String,User> entity) {
-		User user = entity.getFirst("user");
-		User contact = entity.getFirst("contact");
-		
-		System.out.println(user.getUsername());
-		System.out.println(contact.getUsername());
-		
-		return manageContactListService.deleteContact(user, contact);
+	public boolean deleteContact(@RequestBody LinkedMultiValueMap<String, User> entity) {
+		try {
+			User user = entity.getFirst("user");
+			User contact = entity.getFirst("contact");
+			return manageContactListService.deleteContact(user, contact);
+		} catch (IllegalArgumentException e) {
+			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
+		} catch (TransactionRequiredException e) {
+			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (Exception e) {
+			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+		}
 	}
-//	
-//	@RequestMapping(value = "/getContactList", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-//	public List<User> getContactList(@RequestBody User user) {
-//		return manageContactListService.getContactList(user);
-//	}
 
 }
