@@ -28,12 +28,15 @@ public class ManageChatGroupsAdapter {
 	public boolean addConversation(@RequestBody User user) {
 		try {
 			return manageChatGroupsService.addConversation(user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addConversation - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addConversation - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //addConversation - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -42,12 +45,15 @@ public class ManageChatGroupsAdapter {
 			@RequestBody User user) {
 		try {
 			return manageChatGroupsService.addGroupConversation(user, chatname);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addGroupConversation - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addGroupConversation - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //addGroupConversation - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -55,12 +61,15 @@ public class ManageChatGroupsAdapter {
 	public boolean deleteConveration(@RequestBody Chat chat) {
 		try {
 			return manageChatGroupsService.deleteConveration(chat);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteConveration - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteConveration - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //deleteConveration - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -68,12 +77,15 @@ public class ManageChatGroupsAdapter {
 	public boolean updateConversation(@RequestBody Chat chat) {
 		try {
 			return manageChatGroupsService.updateConversation(chat);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //updateConversation - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //updateConversation - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //updateConversation - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -81,12 +93,15 @@ public class ManageChatGroupsAdapter {
 	public List<Chat> getAllConversations(@RequestBody User user) {
 		try {
 			return manageChatGroupsService.getAllConversations(user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getAllConversations - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getAllConversations - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //getAllConversations - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -94,12 +109,15 @@ public class ManageChatGroupsAdapter {
 	public boolean addUserToConversation(@RequestBody Chat chat, @RequestBody User user) {
 		try {
 			return manageChatGroupsService.addUserToConversation(chat, user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addUserToConversation - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addUserToConversation - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //addUserToConversation - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -107,12 +125,15 @@ public class ManageChatGroupsAdapter {
 	public boolean deleteUserFromConversation(@RequestBody Chat chat, @RequestBody User user) {
 		try {
 			return manageChatGroupsService.deleteUserFromConversation(chat, user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUserFromConversation - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUserFromConversation - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUserFromConversation - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -120,12 +141,15 @@ public class ManageChatGroupsAdapter {
 	public boolean grantAdminPermission(@RequestBody Chat chat, @RequestBody User user) {
 		try {
 			return manageChatGroupsService.grantAdminPermission(chat, user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //grantAdminPermission - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //grantAdminPermission - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //grantAdminPermission - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -133,12 +157,15 @@ public class ManageChatGroupsAdapter {
 	public boolean revokeAdminPermission(@RequestBody Chat chat, @RequestBody User user) {
 		try {
 			return manageChatGroupsService.revokeAdminPermission(chat, user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //revokeAdminPermission - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //revokeAdminPermission - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //revokeAdminPermission - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 }

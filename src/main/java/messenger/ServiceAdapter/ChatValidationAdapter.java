@@ -22,12 +22,15 @@ public class ChatValidationAdapter {
 	public boolean checkIfChatExists(@RequestParam(value = "chatId") Long chatId) {
 		try {
 			return chatValidationService.checkIfChatExists(chatId);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 }

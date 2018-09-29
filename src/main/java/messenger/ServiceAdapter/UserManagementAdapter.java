@@ -26,12 +26,15 @@ public class UserManagementAdapter {
 			@RequestParam(value = "passwort") String passwort) {
 		try {
 			return userManagementService.addUser(username, passwort);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
 		}
 
 	}
@@ -40,12 +43,15 @@ public class UserManagementAdapter {
 	public boolean deleteUser(@RequestBody User user) {
 		try {
 			return userManagementService.deleteUser(user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -53,12 +59,15 @@ public class UserManagementAdapter {
 	public boolean updateUser(@RequestBody User user) {
 		try {
 			return userManagementService.updateUser(user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -66,12 +75,15 @@ public class UserManagementAdapter {
 	public User getUser(@RequestBody User user) {
 		try {
 			return userManagementService.getUser(user);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -79,12 +91,15 @@ public class UserManagementAdapter {
 	public User getUser(@RequestBody Long userId) {
 		try {
 			return userManagementService.getUserById(userId);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -93,26 +108,33 @@ public class UserManagementAdapter {
 			@RequestParam(value = "passwort") String passwort) {
 		try {
 			return userManagementService.loginUser(username, passwort);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public User[] getAllUsers() {
-		try {
-			return userManagementService.getAllUsers();
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
-		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
-		}
+		throw new Exception_Custom("01 - IllegalArgumentException ");
+//		try {
+//			return userManagementService.getAllUsers();
+//		} catch (IllegalArgumentException | TransactionRequiredException e) {
+//			throw new Exception_Custom(
+//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+//		} catch (RuntimeException e) {
+//			throw new Exception_Custom(
+//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+//		} catch (Exception e) {
+//			throw new Exception_Custom(
+//					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+//		}
 	}
 
 }

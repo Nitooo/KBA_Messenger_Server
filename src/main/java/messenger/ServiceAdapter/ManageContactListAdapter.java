@@ -27,12 +27,15 @@ public class ManageContactListAdapter {
 			User user = entity.getFirst("user");
 			User contact = entity.getFirst("contact");
 			return manageContactListService.addContact(user, contact);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -42,12 +45,15 @@ public class ManageContactListAdapter {
 			User user = entity.getFirst("user");
 			User contact = entity.getFirst("contact");
 			return manageContactListService.deleteContact(user, contact);
-		} catch (IllegalArgumentException e) {
-			throw new Exception_Custom("01 - IllegalArgumentException " + e.getMessage());
-		} catch (TransactionRequiredException e) {
-			throw new Exception_Custom("02 - TransactionRequiredException: " + e.getMessage());
+		} catch (IllegalArgumentException | TransactionRequiredException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
+		} catch (RuntimeException e) {
+			throw new Exception_Custom(
+					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom("03 - Ein unbestimmter Fehler ist aufgetreten: " + e.getMessage());
+			throw new Exception_Custom(
+					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
