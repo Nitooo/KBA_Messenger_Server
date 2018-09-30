@@ -188,7 +188,6 @@ public class UserManagementAdapter {
 	 */
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public User[] getAllUsers() {
-//		throw new Exception_Custom("test exception");
 		try {
 			return userManagementService.getAllUsers();
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
