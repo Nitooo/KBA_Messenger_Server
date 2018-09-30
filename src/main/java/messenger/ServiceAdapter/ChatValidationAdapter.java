@@ -20,6 +20,15 @@ public class ChatValidationAdapter {
 	@Autowired
 	private ChatValidation chatValidationService;
 
+	/**
+	 * Restadapter for check if chat exists
+	 * 
+	 * @param chatId for the chat to find in the system
+	 * @return true: chat exist ; false: chat doesn't exist
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/checkIfChatExists", method = RequestMethod.GET)
 	public boolean checkIfChatExists(@RequestParam(value = "chatId") Long chatId) {
 		try {

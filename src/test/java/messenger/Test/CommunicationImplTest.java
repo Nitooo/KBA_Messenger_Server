@@ -18,6 +18,10 @@ import messenger.Domain.Chat;
 import messenger.Domain.Message;
 import messenger.ServiceImpl.CommunicationImpl;
 
+/**
+ * Test the CommunicationImpl
+ *
+ */
 public class CommunicationImplTest {
 
 	@InjectMocks
@@ -42,6 +46,9 @@ public class CommunicationImplTest {
 
 	// sendMessage Tests
 
+	/**
+	 * Message Send works
+	 */
 	@Test
 	public void testMessageSend() {
 		Mockito.when(chatDaoImpl.getChatById(1l)).thenReturn(chat);
@@ -51,6 +58,9 @@ public class CommunicationImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * message couldtn send because already exist
+	 */
 	@Test(expected = EntityExistsException.class)
 	public void testMessageAlreadySend() {
 		Mockito.when(chatDaoImpl.getChatById(1l)).thenReturn(chat);
@@ -60,6 +70,9 @@ public class CommunicationImplTest {
 		testingObject.sendMessage(message);
 	}
 
+	/**
+	 * message couldnt send because chat doesnt exist
+	 */
 	@Test
 	public void testMessageDoesntSendChatDoesntExist() {
 		Mockito.when(chatDaoImpl.getChatById(1l)).thenThrow(NoResultException.class);
@@ -71,6 +84,9 @@ public class CommunicationImplTest {
 
 	// getChat Tests
 
+	/**
+	 * chat was found
+	 */
 	@Test
 	public void testChatExist() {
 		Mockito.when(chatDaoImpl.getChatById(1l)).thenReturn(chat);
@@ -79,6 +95,9 @@ public class CommunicationImplTest {
 		Assert.assertEquals(result, chat);
 	}
 
+	/**
+	 * chat wasnt found
+	 */
 	@Test
 	public void testChatDoesntExist() {
 		Mockito.when(chatDaoImpl.getChatById(1l)).thenThrow(NoResultException.class);

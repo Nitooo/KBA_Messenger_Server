@@ -20,6 +20,15 @@ public class UserValidationAdapter {
 	@Autowired
 	private UserValidation userValidationService;
 
+	/**
+	 * Restadapter to check if the user exist with this name
+	 * 
+	 * @param username of the user
+	 * @return true: user exists; false: user doesnt exist
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/checkIfUserExists", method = RequestMethod.GET)
 	public boolean checkIfUserExists(@RequestParam(value = "userId") Long username) {
 		try {

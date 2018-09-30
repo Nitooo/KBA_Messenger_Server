@@ -17,6 +17,10 @@ import messenger.DaoImpl.UserDaoImpl;
 import messenger.Domain.User;
 import messenger.ServiceImpl.UserManagementImpl;
 
+/**
+ * Test for UserManagementImpl
+ *
+ */
 public class UserManagementImplTest {
 
 	@InjectMocks
@@ -39,6 +43,9 @@ public class UserManagementImplTest {
 
 	// addUser
 
+	/**
+	 * addUser succesful
+	 */
 	@Test
 	public void testAddUser() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenThrow(NoResultException.class);
@@ -47,6 +54,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, 0);
 	}
 
+	/**
+	 * couldnt becasue of EntityExistException
+	 */
 	@Test
 	public void testAddUserAlreadyExistWithDiffrentName() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenThrow(NoResultException.class);
@@ -57,6 +67,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, 1);
 	}
 
+	/**
+	 * Couldnt because the name is already given to someone else
+	 */
 	@Test
 	public void testAddUserNameAlreadyExist() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenReturn(user);
@@ -67,18 +80,27 @@ public class UserManagementImplTest {
 
 	// deleteUser
 
+	/**
+	 * succesful delted user
+	 */
 	@Test
 	public void testDeleteUser() {
 		boolean result = testingObject.deleteUser(user);
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt because of an IllegalArgumentException in the entitymanager
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testDeleteUserException() {
 		Mockito.doThrow(IllegalArgumentException.class).when(userDaoImpl).removeObject(user);
 		testingObject.deleteUser(user);
 	}
 
+	/**
+	 * couldnt because of an TransactionRequiredException in the entitymanager
+	 */
 	@Test(expected = TransactionRequiredException.class)
 	public void testDeleteUserException2() {
 		Mockito.doThrow(TransactionRequiredException.class).when(userDaoImpl).removeObject(user);
@@ -87,6 +109,9 @@ public class UserManagementImplTest {
 
 	// updateUser
 
+	/**
+	 * succesful updated user
+	 */
 	@Test
 	public void testUpdateUser() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenReturn(user);
@@ -95,6 +120,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt because name already exist
+	 */
 	@Test
 	public void testUpdateUserNameAlreadyExist() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenReturn(user2);
@@ -107,6 +135,9 @@ public class UserManagementImplTest {
 
 	// getUserById
 
+	/**
+	 * succesful; got the use
+	 */
 	@Test
 	public void testgetUserById() {
 		Mockito.when(userDaoImpl.getUserById(1l)).thenReturn(user);
@@ -114,6 +145,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, user);
 	}
 
+	/**
+	 * couldnt get the user because of wrong id
+	 */
 	@Test
 	public void testgetUserByIdWrongID() {
 		Mockito.when(userDaoImpl.getUserById(1l)).thenThrow(NoResultException.class);
@@ -123,6 +157,9 @@ public class UserManagementImplTest {
 
 	// loginUser
 
+	/**
+	 * succesful loged in the user
+	 */
 	@Test
 	public void testLoginUser() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenReturn(user);
@@ -131,6 +168,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, user);
 	}
 
+	/**
+	 * wrong password
+	 */
 	@Test
 	public void testLoginUserWrongPasswort() {
 		Mockito.when(userDaoImpl.getUserByName("name")).thenReturn(user);
@@ -139,6 +179,9 @@ public class UserManagementImplTest {
 		Assert.assertEquals(result, null);
 	}
 
+	/**
+	 * wrong username
+	 */
 	@Test
 	public void testLoginUserWrongName() {
 		Mockito.when(userDaoImpl.getUserByName("name-falsch")).thenThrow(NoResultException.class);
@@ -149,6 +192,9 @@ public class UserManagementImplTest {
 
 	// getAllUsers
 
+	/**
+	 * succesful; got all the users
+	 */
 	@Test
 	public void testgetAllUsers() {
 		User[] userList = new User[1];
@@ -158,6 +204,9 @@ public class UserManagementImplTest {
 		Assert.assertArrayEquals(result, userList);
 	}
 
+	/**
+	 * no user in database
+	 */
 	@Test
 	public void testgetAllUsersWithNoUserInDB() {
 		Mockito.when(userDaoImpl.getAllUsers()).thenReturn(null);

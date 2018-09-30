@@ -15,6 +15,10 @@ import messenger.DaoImpl.UserDaoImpl;
 import messenger.Domain.User;
 import messenger.ServiceImpl.GetUserImpl;
 
+/**
+ * Tests the GetUserImpl
+ *
+ */
 public class GetUserImplTest {
 
 	@InjectMocks
@@ -31,6 +35,9 @@ public class GetUserImplTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
+	/**
+	 * User couldnt be found
+	 */
 	@Test
 	public void testNoUserFoundGetUser() {
 		Mockito.when(userDaoImpl.getUserByName("hans")).thenThrow(NoResultException.class);
@@ -39,6 +46,9 @@ public class GetUserImplTest {
 		Assert.assertEquals(result, null);
 	}
 
+	/**
+	 * User found
+	 */
 	@Test
 	public void testOkGetUser() {
 		Mockito.when(userDaoImpl.getUserByName("hans")).thenReturn(user);

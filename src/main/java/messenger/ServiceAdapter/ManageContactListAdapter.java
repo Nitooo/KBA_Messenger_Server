@@ -23,6 +23,15 @@ public class ManageContactListAdapter {
 	@Autowired
 	private ManageContactList manageContactListService;
 
+	/**
+	 * Restadapter adds an contact to a user
+	 * 
+	 * @param entity LinkedMultiValueMap of the user and contact
+	 * @return true: succesful; false: coundlt do it
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public boolean addContact(@RequestBody LinkedMultiValueMap<String, User> entity) {
 		try {
@@ -41,6 +50,15 @@ public class ManageContactListAdapter {
 		}
 	}
 
+	/**
+	 * Restadapter removes a contact from the user
+	 * 
+	 * @param entity LinkedMultiValueMap of the user and contact
+	 * @return true: succesful; false: couldnt do it
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/deleteContact", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public boolean deleteContact(@RequestBody LinkedMultiValueMap<String, User> entity) {
 		try {

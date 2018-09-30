@@ -10,6 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class ServerApplication {
 
+	/**
+	 * Main Methode zum starten des Servers
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
 	}

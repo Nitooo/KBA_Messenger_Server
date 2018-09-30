@@ -23,6 +23,16 @@ public class UserManagementAdapter {
 	@Autowired
 	private UserManagement userManagementService;
 
+	/**
+	 * Restadapter to addUser to the system
+	 * 
+	 * @param username name of new user
+	 * @param passwort pw of new user
+	 * @return 0: succesful; 1: user alreadyExist
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public int addUser(@RequestParam(value = "username") String username,
 			@RequestParam(value = "passwort") String passwort) {
@@ -41,6 +51,15 @@ public class UserManagementAdapter {
 
 	}
 
+	/**
+	 * Restadapter deltes the user from the system
+	 * 
+	 * @param user the user which shall be deleted
+	 * @return true: succesful; false: couldnt do it
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/deleteUser", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public boolean deleteUser(@RequestBody User user) {
 		try {
@@ -57,6 +76,15 @@ public class UserManagementAdapter {
 		}
 	}
 
+	/**
+	 * Restadapter that updates an user
+	 * 
+	 * @param user the new user object
+	 * @return true: succesful; false: couldnt do it
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/updateUser", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public boolean updateUser(@RequestBody User user) {
 		try {
@@ -73,6 +101,15 @@ public class UserManagementAdapter {
 		}
 	}
 
+	/**
+	 * Restadapter gives you the newer user object
+	 * 
+	 * @param user you want to get
+	 * @return the user you want
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/getUser", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public User getUser(@RequestBody User user) {
 		try {
@@ -89,6 +126,15 @@ public class UserManagementAdapter {
 		}
 	}
 
+	/**
+	 * gives you the user with the id
+	 * 
+	 * @param userId of the user
+	 * @return the user
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/getUserById", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public User getUser(@RequestBody Long userId) {
 		try {
@@ -105,6 +151,16 @@ public class UserManagementAdapter {
 		}
 	}
 
+	/**
+	 * gives you the user for the login data
+	 * 
+	 * @param username of the user
+	 * @param passwort of the user
+	 * @return the user
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
 	public User loginUser(@RequestParam(value = "username") String username,
 			@RequestParam(value = "passwort") String passwort) {
@@ -122,6 +178,14 @@ public class UserManagementAdapter {
 		}
 	}
 
+	/**
+	 * Restadapter gives a list of all user from the system
+	 * 
+	 * @return User[] list
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public User[] getAllUsers() {
 //		throw new Exception_Custom("test exception");

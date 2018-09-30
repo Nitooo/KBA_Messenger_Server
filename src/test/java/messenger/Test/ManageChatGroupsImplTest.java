@@ -21,6 +21,10 @@ import messenger.Domain.Chat;
 import messenger.Domain.User;
 import messenger.ServiceImpl.ManageChatGroupsImpl;
 
+/**
+ * Tests for the ManageChatGroupsImpl
+ *
+ */
 public class ManageChatGroupsImplTest {
 
 	@InjectMocks
@@ -48,6 +52,9 @@ public class ManageChatGroupsImplTest {
 
 	// addConversation
 
+	/**
+	 * add converstaion succesful
+	 */
 	@Test
 	public void addConveration() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -56,6 +63,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt add conversation because user doesnt exist
+	 */
 	@Test
 	public void addConverationUserDoesntExist() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -64,6 +74,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, false);
 	}
 
+	/**
+	 * couldnt add the conversation because the conversation already exist
+	 */
 	@Test(expected = EntityExistsException.class)
 	public void addConverationUserPersistException() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -75,6 +88,9 @@ public class ManageChatGroupsImplTest {
 
 	// addGroupConversation
 
+	/**
+	 * addes succesful the GroupConversation
+	 */
 	@Test
 	public void addGroupConveration() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -83,6 +99,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * Couldnt add groupconversation because user doesnt exist
+	 */
 	@Test
 	public void addGroupConverationUserDoesntExist() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -91,6 +110,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, false);
 	}
 
+	/**
+	 * couldnt add groupconversation because the conversation already exist
+	 */
 	@Test(expected = EntityExistsException.class)
 	public void addGroupConverationUserPersistException() {
 		Mockito.when(user.getUserId()).thenReturn(1l);
@@ -101,18 +123,27 @@ public class ManageChatGroupsImplTest {
 	}
 
 	// deleteConversation
+	/**
+	 * delete conversation succesful
+	 */
 	@Test
 	public void testDeleteChat() {
 		boolean result = testingObject.deleteConveration(chat);
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldt delete for IllegalArgumentException in the EntityManager
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testDeleteChatException() {
 		Mockito.doThrow(IllegalArgumentException.class).when(chatDaoImpl).removeObject(chat);
 		testingObject.deleteConveration(chat);
 	}
 
+	/**
+	 * couldnt delete for TransactionRequiredException in the EntityManager
+	 */
 	@Test(expected = TransactionRequiredException.class)
 	public void testDeleteChatException2() {
 		Mockito.doThrow(TransactionRequiredException.class).when(chatDaoImpl).removeObject(chat);
@@ -120,18 +151,27 @@ public class ManageChatGroupsImplTest {
 	}
 
 	// updateConversation
+	/**
+	 * succesful updated the conversation
+	 */
 	@Test
 	public void testUpdateChat() {
 		boolean result = testingObject.updateConversation(chat);
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt update for IllegalArgumentException in the EntityManager
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testUpdateChatException() {
 		Mockito.doThrow(IllegalArgumentException.class).when(chatDaoImpl).mergeObject(chat);
 		testingObject.updateConversation(chat);
 	}
 
+	/**
+	 * couldnt update for TransactionRequiredException in the EntityManager
+	 */
 	@Test(expected = TransactionRequiredException.class)
 	public void testUpdateChatException2() {
 		Mockito.doThrow(TransactionRequiredException.class).when(chatDaoImpl).mergeObject(chat);
@@ -140,6 +180,9 @@ public class ManageChatGroupsImplTest {
 
 	// getAllChats
 
+	/**
+	 * succesful getting all chats
+	 */
 	@Test
 	public void testgetAllChats() {
 		Mockito.when(user.getChats()).thenReturn(chatList);
@@ -147,6 +190,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, chatList);
 	}
 
+	/**
+	 * there wasnt any chats in the database
+	 */
 	@Test
 	public void testgetAllChatsWithNoChatInDB() {
 		Mockito.when(user.getChats()).thenReturn(null);
@@ -156,6 +202,9 @@ public class ManageChatGroupsImplTest {
 
 	// addUserToConverastion
 
+	/**
+	 * succesful addes an user to the conversation
+	 */
 	@Test
 	public void testAddUserToConversation() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -166,6 +215,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt add user to conversation because chat doesnt exist
+	 */
 	@Test
 	public void testAddUserToConversationChatDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -176,6 +228,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, false);
 	}
 
+	/**
+	 * couldnt add user to the conversation because user doesnt exist
+	 */
 	@Test
 	public void testAddUserToConversationUserDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -188,6 +243,9 @@ public class ManageChatGroupsImplTest {
 
 	// deleteUserToConverastion
 
+	/**
+	 * conversation deleted succesful
+	 */
 	@Test
 	public void testDeleteUserToConversation() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -198,6 +256,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt delete the conversation because it doesnt exist
+	 */
 	@Test
 	public void testDeleteUserToConversationChatDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -210,6 +271,9 @@ public class ManageChatGroupsImplTest {
 
 	// grantAdminPermissopmn
 
+	/**
+	 * granted admin permission succesful
+	 */
 	@Test
 	public void testgrantAdminPermission() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -220,6 +284,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt grant because the chat doesnt exist
+	 */
 	@Test
 	public void testgrantAdminPermissionChatDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -230,6 +297,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, false);
 	}
 
+	/**
+	 * couldnt grant because the user doesnt exist
+	 */
 	@Test
 	public void testgrantAdminPermissionUserDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -242,6 +312,9 @@ public class ManageChatGroupsImplTest {
 
 	// removeAdminPersmission
 
+	/**
+	 * revoked roght succesful
+	 */
 	@Test
 	public void testrevokeAdminPermission() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);
@@ -252,6 +325,9 @@ public class ManageChatGroupsImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * couldnt revoke because couldnt find chat
+	 */
 	@Test
 	public void testrevokeAdminPermissionChatDoesntExist() {
 		Mockito.when(chat.getChatId()).thenReturn(1l);

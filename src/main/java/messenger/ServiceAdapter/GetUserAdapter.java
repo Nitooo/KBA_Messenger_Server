@@ -21,6 +21,15 @@ public class GetUserAdapter {
 	@Autowired
 	private GetUser getUserService;
 
+	/**
+	 * Restadapter gives the userobject of the name
+	 * 
+	 * @param username of the user you want to get
+	 * @return user object
+	 * @throws Exception_EntityManager if an exception in the entitymanager occurs
+	 * @throws Exception_Runtime       if an RuntimeException occurs
+	 * @throws Exception_All           if an another Exception occurs
+	 */
 	@RequestMapping(value = "/getUser", method = RequestMethod.GET)
 	public User getUser(@RequestParam(value = "username") String username) {
 		try {

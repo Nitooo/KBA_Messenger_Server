@@ -14,6 +14,8 @@ public interface Communication {
 	public boolean sendMessage(Message message);
 
 	/**
+	 * receive chat
+	 * 
 	 * @param chat chat for receive messages
 	 * @return chat with all messages
 	 */

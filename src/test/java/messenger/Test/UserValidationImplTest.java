@@ -15,6 +15,10 @@ import messenger.DaoImpl.UserDaoImpl;
 import messenger.Domain.User;
 import messenger.ServiceImpl.UserValidationImpl;
 
+/**
+ * Test for UserValidationImpl
+ *
+ */
 public class UserValidationImplTest {
 
 	@InjectMocks
@@ -31,6 +35,9 @@ public class UserValidationImplTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
+	/**
+	 * user exist
+	 */
 	@Test
 	public void testUserExist() {
 		Mockito.when(userDaoImpl.getUserById(1l)).thenReturn(user);
@@ -38,6 +45,9 @@ public class UserValidationImplTest {
 		Assert.assertEquals(result, true);
 	}
 
+	/**
+	 * user not in the system
+	 */
 	@Test
 	public void testUserDontExist() {
 		Mockito.when(userDaoImpl.getUserById(1l)).thenThrow(NoResultException.class);
