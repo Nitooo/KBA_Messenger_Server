@@ -1,5 +1,9 @@
 package messenger.Exception;
 
+/**
+ * Wird bei Fehlern im EntityManager geworfen
+ *
+ */
 public class Exception_EntityManager extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

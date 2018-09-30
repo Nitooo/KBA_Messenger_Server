@@ -1,5 +1,9 @@
 package messenger.Exception;
 
+/**
+ * Wird bei Runtimefehlern geworfen
+ *
+ */
 public class Exception_Runtime extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

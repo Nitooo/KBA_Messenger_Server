@@ -1,5 +1,9 @@
 package messenger.Exception;
 
+/**
+ * Die Fehlernachricht für den Client
+ *
+ */
 public class ExceptionMsg {
 	private String exceptionMsg;
 
