@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import messenger.Domain.User;
-import messenger.Exception.Exception_Custom;
+import messenger.Exception.Exception_All;
+import messenger.Exception.Exception_EntityManager;
+import messenger.Exception.Exception_Runtime;
 import messenger.Service.ManageContactList;
 
 @RestController
@@ -28,14 +30,14 @@ public class ManageContactListAdapter {
 			User contact = entity.getFirst("contact");
 			return manageContactListService.addContact(user, contact);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -46,14 +48,14 @@ public class ManageContactListAdapter {
 			User contact = entity.getFirst("contact");
 			return manageContactListService.deleteContact(user, contact);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteContact - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 

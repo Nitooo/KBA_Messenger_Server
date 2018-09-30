@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import messenger.Exception.Exception_Custom;
+import messenger.Exception.Exception_All;
+import messenger.Exception.Exception_EntityManager;
+import messenger.Exception.Exception_Runtime;
 import messenger.Service.UserValidation;
 
 @RestController
@@ -23,14 +25,14 @@ public class UserValidationAdapter {
 		try {
 			return userValidationService.checkIfUserExists(username);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //checkIfUserExists - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //checkIfUserExists - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //checkIfUserExists - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 

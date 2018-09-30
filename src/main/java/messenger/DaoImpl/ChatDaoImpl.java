@@ -18,14 +18,14 @@ public class ChatDaoImpl implements ChatDao, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
 	public EntityManager getEm() {
 		return em;
 	}
-	
+
 	public <T> void persistObject(T entity) {
 		em.persist(entity);
 	}
@@ -44,7 +44,6 @@ public class ChatDaoImpl implements ChatDao, Serializable {
 		TypedQuery<Chat> query = em.createQuery("SELECT chat FROM Chat chat WHERE chat_id = :chatid", Chat.class);
 		query.setParameter("chatid", chatId);
 		return query.getSingleResult();
-		//return Chat.getChatById(chatId);
 	}
 
 }

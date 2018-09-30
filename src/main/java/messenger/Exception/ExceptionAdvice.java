@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-	@ExceptionHandler(Exception_Custom.class)
-	public ExceptionMsg handleException(Exception_Custom e) {
+	@ExceptionHandler(Exception_EntityManager.class)
+	public ExceptionMsg handleException(Exception_EntityManager e) {
 		ExceptionMsg exceptionMsg = new ExceptionMsg(e.getMessage());
 		return exceptionMsg;
 	}

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import messenger.Domain.User;
-import messenger.Exception.Exception_Custom;
+import messenger.Exception.Exception_All;
+import messenger.Exception.Exception_EntityManager;
+import messenger.Exception.Exception_Runtime;
 import messenger.Service.UserManagement;
 
 @RestController
@@ -27,14 +29,14 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.addUser(username, passwort);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //addUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 
 	}
@@ -44,14 +46,14 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.deleteUser(user);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //deleteUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -60,14 +62,14 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.updateUser(user);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //updateUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -76,14 +78,14 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.getUser(user);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -92,14 +94,14 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.getUserById(userId);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getUserById - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
@@ -109,31 +111,31 @@ public class UserManagementAdapter {
 		try {
 			return userManagementService.loginUser(username, passwort);
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //loginUser - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public User[] getAllUsers() {
-//		throw new Exception_Custom("01 - IllegalArgumentException ");
+//		throw new Exception_Custom("test exception");
 		try {
 			return userManagementService.getAllUsers();
 		} catch (IllegalArgumentException | TransactionRequiredException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_EntityManager(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (RuntimeException e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_Runtime(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		} catch (Exception e) {
-			throw new Exception_Custom(
-					"Couldn't execute //getAllUsers - Exception: " + e + " Message: " + e.getMessage());
+			throw new Exception_All(
+					"Couldn't execute //checkIfChatExists - Exception: " + e + " Message: " + e.getMessage());
 		}
 	}
 
